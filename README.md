@@ -1,6 +1,7 @@
 # Native-App-Protocal-Detection
 
-Detect if software/app installed in Windows using registry/plugins/onBlur  
+Detect if software/app installed in Windows using registry/plugins/onBlur  
+Detect the presence of application/Sofware in Windows
 Work Well for IE/Chrome/360  But Firefox not solved Now
 
 Reference:
@@ -29,22 +30,23 @@ https://stackoverflow.com/questions/27489665/approaches-of-detection-of-custom-p
 Custom Protocol Detection in Browser源码:
 https://github.com/ismailhabib/custom-protocol-detection
 
-
 IE系列：
-Win7
+	Win7
 <script>
 			function findPlugins(){
 var shell = new ActiveXObject("WScript.shell");
 var reg=shell.RegRead("HKEY_CLASSES_ROOT\\glcloud\\URL Protocol");
 }
 <script>
-更正一下，网上好多错的
-对于Win8,Win10用户，IE自带API判断
+更正一下，网上好多错的,command/层级下没有执行文件，无法执行
+	Win8,Win10，IE自带API判断
 navigator.msLaunchUri(uri)
-Chrome：
+	
+	Chrome：
 这个实现比较巧妙。当软件存在，点击链接会打开软件，鼠标跳出。因而创建一个SetTimeOut任务，当3s内鼠标仍未跳出，说明软件不存在。
 navigator.plugins只能载入native client(nacl)、chrome PDF等几个组件，不支持npapi
-360极速浏览器：
+	
+	360极速浏览器：
 可以使用navigator.plugins载入所有插件（包括npapi），也可以同chrome使用相同解法
 <script>
 			function findPlugins(){
@@ -57,5 +59,5 @@ navigator.plugins只能载入native client(nacl)、chrome PDF等几个组件，�
 						break;}}
 }
 </script>
-火狐：
+	火狐：
 火狐在软件不存在时也会弹出选择框，目前还未解决欢迎大家贡献才智
